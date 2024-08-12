@@ -29,18 +29,21 @@ A web-based application built using Django and PostgreSQL to manage gym membersh
 ### Setup Instructions
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/Black-Dragon-Kalameet/Gymsystem.git
    cd Gymsystem
    ```
 
 2. **Create a Virtual Environment and Activate It**
+
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    ```
 
 3. **Install Dependencies**
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -49,17 +52,20 @@ A web-based application built using Django and PostgreSQL to manage gym membersh
    - Update the `DATABASES` setting in `settings.py` with your PostgreSQL database credentials.
 
 5. **Apply Migrations**
+
    ```bash
    python manage.py makemigrations
    python manage.py migrate
    ```
 
 6. **Create a Superuser**
+
    ```bash
    python manage.py createsuperuser
    ```
 
 7. **Run the Development Server**
+
    ```bash
    python manage.py runserver
    ```
@@ -80,5 +86,3 @@ If you would like to contribute to this project, please fork the repository and 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-
