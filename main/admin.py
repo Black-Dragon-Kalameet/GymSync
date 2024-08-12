@@ -13,3 +13,7 @@ admin.site.register(models.banners,banneradmin)
 class serviceadmin(admin.ModelAdmin):
     list_display=('title','image_tag')  
 admin.site.register(models.service,serviceadmin)
+
+class pageadmin(admin.ModelAdmin):
+    list_display=('title',)  
+admin.site.register(models.Page,pageadmin)
