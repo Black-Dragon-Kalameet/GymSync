@@ -5,7 +5,9 @@ from django.conf.urls.static import static
 
 #Define the URL patterns for the app. The '' path maps to the 'home' view
 urlpatterns =[
-    path('',views.home,name='home')
+    path('',views.home,name='home'),
+    path('pagedetail/<int:id>',views.page_detail,name='pagedetail')
+
 ]
 #If DEBUG is True, serve media files (like images) during development
 #by appending a route to the urlpatterns that maps MEDIA_URL to MEDIA_ROOT locally
