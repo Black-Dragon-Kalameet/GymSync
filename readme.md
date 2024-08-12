@@ -1,6 +1,6 @@
-![Gym Management System Logo](project_logo.jpg)
-
 # GymSync
+
+![Gym Management System Logo](project_logo.jpg)
 
 A web-based application built using Django and PostgreSQL to manage gym memberships, classes, trainers, and other related operations. This project aims to simplify the administration and operational tasks of gym management by providing an easy-to-use interface for gym owners and staff.
 
