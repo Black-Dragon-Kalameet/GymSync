@@ -44,35 +44,29 @@ A web-based application built using Django and PostgreSQL to manage gym membersh
    source venv/bin/activate
    ```
 
-3. **Install Dependencies**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Configure the Database**
+3. **Configure the Database**
    - Update the `DATABASES` setting in `settings.py` with your PostgreSQL database credentials.
 
-5. **Apply Migrations**
+4. **Apply Migrations**
 
    ```bash
    python manage.py makemigrations
    python manage.py migrate
    ```
 
-6. **Create a Superuser**
+5. **Create a Superuser**
 
    ```bash
    python manage.py createsuperuser
    ```
 
-7. **Run the Development Server**
+6. **Run the Development Server**
 
    ```bash
    python manage.py runserver
    ```
 
-8. **Access the Application**
+7. **Access the Application**
    - Open your browser and go to `http://127.0.0.1:8000/` to view the application.
    - Admin interface: `http://127.0.0.1:8000/admin/`
 
@@ -87,4 +81,4 @@ If you would like to contribute to this project, please fork the repository and 
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://opensource.org/license/mit) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://opensource.org/license/mit) for more details.
