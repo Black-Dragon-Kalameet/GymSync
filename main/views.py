@@ -19,5 +19,11 @@ def faq_list(request):
 
 # Enquiry
 def enquiry(request):
+    message = ''
+    if request.method == 'POST':
+        form = forms.EnquiryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            message = 'Your enquiry has been sent successfully.'
     form = forms.EnquiryForm
-    return render(request,'enquiry.html',{'form':form})
+    return render(request,'enquiry.html',{'form':form, 'message': message})
