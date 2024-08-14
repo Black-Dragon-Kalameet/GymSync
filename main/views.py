@@ -10,3 +10,8 @@ def home (request):
 def page_detail(request, id):
     page = models.Page.objects.get(id = id)
     return render(request,'page.html',{'page':page})
+
+# FAQ
+def faq_list(request):
+    faqs = models.Faq.objects.all
+    return render(request,'faq.html',{'faqs':faqs})
