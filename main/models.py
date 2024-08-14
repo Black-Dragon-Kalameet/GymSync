@@ -14,7 +14,7 @@ class banners(models.Model):
     # The image is displayed as a thumbnail with a width of 80 pixels.
         return mark_safe('<img src="%s" width="80"/>' % (self.img.url))
 
-# Pages
+# Pages for Privacy and Terms
 class Page(models.Model):
     title = models.CharField(max_length=200)
     detail = models.TextField()
