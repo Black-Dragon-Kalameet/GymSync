@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from . import models
+from . import forms
 # Create your views here.
 def home (request):
     banners = models.banners.objects.all()
@@ -15,3 +16,8 @@ def page_detail(request, id):
 def faq_list(request):
     faqs = models.Faq.objects.all
     return render(request,'faq.html',{'faqs':faqs})
+
+# Enquiry
+def enquiry(request):
+    form = forms.EnquiryForm
+    return render(request,'enquiry.html',{'form':form})

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.html import mark_safe 
 
-#BANNERS
+#BANNERS Data
 class banners(models.Model):
     img=models.ImageField(upload_to="banners/")
     alt_text=models.CharField(max_length=150)
@@ -14,7 +14,7 @@ class banners(models.Model):
     # The image is displayed as a thumbnail with a width of 80 pixels.
         return mark_safe('<img src="%s" width="80"/>' % (self.img.url))
 
-# Pages for Privacy and Terms
+# Pages for Privacy and Terms Data
 class Page(models.Model):
     title = models.CharField(max_length=200)
     detail = models.TextField()
@@ -22,7 +22,7 @@ class Page(models.Model):
     def __str__(self):
         return self.title
         
-# FAQ
+# FAQ Data
 class Faq(models.Model):
     question = models.TextField()
     answer = models.TextField()
@@ -30,7 +30,7 @@ class Faq(models.Model):
     def __str__(self):
         return self.question
         
-# Create your models here.
+# Services Data
 class service(models.Model):
     title = models.CharField(max_length=150)
     detail = models.TextField()
@@ -41,3 +41,14 @@ class service(models.Model):
     
     def image_tag(self):
         return mark_safe('<img src="%s" width="80"/>' % (self.img.url))
+    
+# Enquiry Form Data
+class Enquiry(models.Model):
+    enquirer_name = models.CharField(max_length=150)
+    enquirer_email = models.CharField(max_length=150)
+    enquiry_message = models.TextField()
+    enquiry_dateAndTime = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.enquirer_name
+        

@@ -21,3 +21,7 @@ admin.site.register(models.Page,pageadmin)
 class FaqAdmin(admin.ModelAdmin):
     list_display=('question',)  
 admin.site.register(models.Faq,FaqAdmin)
+
+class EnquiryAdmin(admin.ModelAdmin):
+    list_display=('enquirer_name', "enquirer_email", "enquiry_message", "enquiry_dateAndTime")  
+admin.site.register(models.Enquiry,EnquiryAdmin)
