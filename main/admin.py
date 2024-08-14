@@ -17,3 +17,7 @@ admin.site.register(models.service,serviceadmin)
 class pageadmin(admin.ModelAdmin):
     list_display=('title',)  
 admin.site.register(models.Page,pageadmin)
+
+class FaqAdmin(admin.ModelAdmin):
+    list_display=('question',)  
+admin.site.register(models.Faq,FaqAdmin)

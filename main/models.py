@@ -22,6 +22,14 @@ class Page(models.Model):
     def __str__(self):
         return self.title
         
+# FAQ
+class Faq(models.Model):
+    question = models.TextField()
+    answer = models.TextField()
+
+    def __str__(self):
+        return self.question
+        
 # Create your models here.
 class service(models.Model):
     title = models.CharField(max_length=150)
