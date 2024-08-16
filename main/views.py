@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth import logout
 from . import models
 from . import forms
 # Create your views here.
@@ -29,3 +30,32 @@ def enquiry(request):
             
     form = forms.EnquiryForm
     return render(request,'enquiry.html',{'form':form, 'message': message})
+
+# trainers
+def trainerlogin(request):
+    message = ''
+    
+    if request.method == 'POST':
+        username = request.POST['username']
+        password= request.POST['password']
+        trainer = models.trainer.objects.filter(username=username,password=password).count()
+        if trainer > 0:
+            request.session['trainerlogin'] = True
+            print("User authenticated:", request.user.is_authenticated)
+            print("Trainer login session:", request.session.get('trainerLogin'))
+            #return redirect('/trainerdash')
+        else:
+            message ='wrong'
+            
+    form = forms.trainerloginform
+    return render(request,'trainerlogin.html',{'form':form, 'message': message})
+
+
+
+def trainer_logout(request):
+    # Clear the trainerLogin session variable
+    request.session.pop('trainerLogin', None)
+    # Log out the user
+    logout(request)
+    # Redirect to the home page or another page
+    return redirect('/')

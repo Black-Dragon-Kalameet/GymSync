@@ -8,7 +8,10 @@ urlpatterns =[
     path('',views.home,name='home'),
     path('pagedetail/<int:id>',views.page_detail,name='pagedetail'),
     path('faq',views.faq_list,name='faq'),
-    path('enquiry',views.enquiry,name='enquiry')
+    path('enquiry',views.enquiry,name='enquiry'),
+    #trainerlogin
+    path('trainer/login',views.trainerlogin,name='trainerlogin'),
+    path('trainer/logout/', views.trainer_logout, name='trainer_logout')
 
 ]
 #If DEBUG is True, serve media files (like images) during development

@@ -52,3 +52,18 @@ class Enquiry(models.Model):
     def __str__(self):
         return self.enquirer_name
         
+class trainer(models.Model):
+    username = models.CharField(max_length=100,null=True)
+    password = models.CharField(max_length=100,null=True) 
+    full_name = models.CharField(max_length=100)
+    mobile = models.CharField(max_length=100)
+    address = models.TextField()
+    is_active=models.BooleanField(default=False)
+    detail=models.TextField()
+    img=models.ImageField(upload_to="trainers/",null=True)
+
+    def __str__(self):
+        return str(self.full_name)
+    
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="80"/>' % (self.img.url))

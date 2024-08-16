@@ -8,13 +8,9 @@
     <!-- Bootstrap CSS -->
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet" />
     <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="node_modules/bootstrap-icons/font/bootstrap-icons.css"
-    />
+    <link href="{% static 'bootstrap-icons/font/bootstrap-icons.css' %}" rel="stylesheet" />
     <!-- jquery -->
-    <script src="assets/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{% static 'jquery-3.6.0.min.js' %}"></script>
     <title>GymSync</title>
   </head>
 
@@ -78,15 +74,20 @@
               </a>
               <ul
                 class="dropdown-menu"
-                aria-labelledby="navbarScrollingDropdown"
-              >
+                aria-labelledby="navbarScrollingDropdown">
+
+                {% if not request.user.is_authenticated %}
+                <li><a class="dropdown-item" href="#">Dashboard</a></li>
+	              <li><a class="dropdown-item" href="#">Profile</a></li>
+	              <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><a class="dropdown-item" href="#">Login</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
+                <li><a class="dropdown-item" href="#">Register</a></li>
+		            {% if request.session.trainerlogin %}
+		            <li><a class="dropdown-item" href="{% url 'trainer_logout' %}">Logout</a></li>
+		            {% else %}          
+	              <li><a class="dropdown-item" href="{% url 'trainerlogin' %}">Trainer Login</a></li>
+	              {% endif %}
+                {% endif %}
               </ul>
             </li>
           </ul>

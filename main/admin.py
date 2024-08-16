@@ -25,3 +25,8 @@ admin.site.register(models.Faq,FaqAdmin)
 class EnquiryAdmin(admin.ModelAdmin):
     list_display=('enquirer_name', "enquirer_email", "enquiry_message", "enquiry_dateAndTime")  
 admin.site.register(models.Enquiry,EnquiryAdmin)
+#trainermodel, this adds the colomns in admin panel and adds the trainers tab itself, list editable makes it so that u can uncheck and check the the is_active pararmeter 
+class traineradmin(admin.ModelAdmin):
+    list_editable = ('is_active',)
+    list_display=('full_name','mobile','is_active','image_tag')
+admin.site.register(models.trainer,traineradmin)

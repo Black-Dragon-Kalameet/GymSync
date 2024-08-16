@@ -17,7 +17,7 @@
         <p class="text-success">{{msg}}</p>
         {% endif %}
 
-        <!-- save the posted enquiry with csrf_token-->zq  
+        <!-- save the posted enquiry with csrf_token-->
         <form method="post" action="{% url 'enquiry' %}">
           {% csrf_token %}
           <table class="table table-bordered">
