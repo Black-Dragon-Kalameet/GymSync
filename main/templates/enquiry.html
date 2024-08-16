@@ -12,9 +12,12 @@
         <img src="{% static 'images/enquiry.png' %}" class="w-75" />
       </div>
       <div class="col-md-6">
+        <!-- Show a message after the user submit an enquiry-->
         {% if msg %}
         <p class="text-success">{{msg}}</p>
         {% endif %}
+
+        <!-- save the posted enquiry with csrf_token-->zq  
         <form method="post" action="{% url 'enquiry' %}">
           {% csrf_token %}
           <table class="table table-bordered">
