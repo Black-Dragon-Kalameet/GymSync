@@ -20,10 +20,12 @@ def faq_list(request):
 # Enquiry
 def enquiry(request):
     message = ''
+    # Save the posted enquiry and show a message after posting an enquiry
     if request.method == 'POST':
         form = forms.EnquiryForm(request.POST)
         if form.is_valid():
             form.save()
             message = 'Your enquiry has been sent successfully.'
+            
     form = forms.EnquiryForm
     return render(request,'enquiry.html',{'form':form, 'message': message})
