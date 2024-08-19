@@ -83,6 +83,8 @@
                 <li><a class="dropdown-item" href="#">Login</a></li>
                 <li><a class="dropdown-item" href="#">Register</a></li>
 		            {% if request.session.trainerlogin %}
+                <li class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'trainerdash' %}">Trainer Dash</a></li>
 		            <li><a class="dropdown-item" href="{% url 'trainer_logout' %}">Logout</a></li>
 		            {% else %}          
 	              <li><a class="dropdown-item" href="{% url 'trainerlogin' %}">Trainer Login</a></li>

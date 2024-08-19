@@ -38,14 +38,20 @@ def trainerlogin(request):
     if request.method == 'POST':
         username = request.POST['username']
         password= request.POST['password']
-        trainer = models.trainer.objects.filter(username=username,password=password).count()
-        if trainer > 0:
+
+        try:
+            trainer = models.trainer.objects.get(username=username,password=password)
             request.session['trainerlogin'] = True
+            request.session['trainerid'] = trainer.id
             print("User authenticated:", request.user.is_authenticated)
             print("Trainer login session:", request.session.get('trainerLogin'))
-            #return redirect('/trainerdash')
-        else:
+            return redirect('/trainerdash')
+        
+        except models.trainer.DoesNotExist:
             message ='wrong'
+
+     
+  
             
     form = forms.trainerloginform
     return render(request,'trainerlogin.html',{'form':form, 'message': message})
@@ -59,3 +65,18 @@ def trainer_logout(request):
     logout(request)
     # Redirect to the home page or another page
     return redirect('/')
+
+def trainerdash(request):
+    return render(request,'trainerdash.html')
+
+def trainerpayment(request):
+    trainer = models.trainer.objects.get(pk=request.session['trainerid'])
+    trainerpaym = [{'amount':120, 'date':'1/1/2024'},
+                   {'amount':150, 'date':'1/2/2024'}
+                   
+                   ]
+    #once model is bult for payment, retrieve here the payments from the database
+
+
+    return render(request, 'trainerpayment.html',{'trainerpaym':trainerpaym})
+
