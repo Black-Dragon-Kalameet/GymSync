@@ -12,3 +12,8 @@ class trainerloginform(forms.ModelForm):
      class Meta:
           model= models.trainer
           fields = ('username','password')
+
+class trainerpform(forms.ModelForm):
+     class Meta:
+          model= models.trainer
+          fields = ('full_name','mobile','address','is_active','detail','img')
