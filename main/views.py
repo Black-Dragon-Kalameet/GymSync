@@ -70,7 +70,7 @@ def trainerdash(request):
     return render(request,'trainerdash.html')
 
 def trainerpayment(request):
-    trainer = models.trainer.objects.get(pk=request.session['trainerid'])
+    #trainer = models.trainer.objects.get(pk=request.session['trainerid'])
     trainerpaym = [{'amount':120, 'date':'1/1/2024'},
                    {'amount':150, 'date':'1/2/2024'}
                    
@@ -80,3 +80,15 @@ def trainerpayment(request):
 
     return render(request, 'trainerpayment.html',{'trainerpaym':trainerpaym})
 
+def trainprof(request):
+    msg =None
+    trainid =  request.session['trainerid']
+    traineri = models.trainer.objects.get(id=trainid)
+    if request.method == 'POST':
+       form = forms.trainerpform(request.POST,request.FILES,instance=traineri)
+       if form.is_valid:
+           form.save()
+           msg ='profile updated'
+    
+    form = forms.trainerpform(instance=traineri)
+    return render(request,'trainprof.html',{'form':form,'msg':msg})

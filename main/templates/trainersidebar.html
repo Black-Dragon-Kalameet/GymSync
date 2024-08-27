@@ -1,7 +1,7 @@
 <div class="list-group">
     <a href="{% url 'trainerdash' %}" class="list-group-item {% if request.path == '/trainerdash' %} active {% endif %}">Dashboard</a>
-    <a href="#" class="list-group-item">Profile</a>
-    <a href="#" class="list-group-item">Assigned Trainees</a>
+    <a href="{% url 'trainprof' %}" class="list-group-item {% if request.path == '/trainprof' %} active {% endif %}">Profile</a>
+    <a href="#" class="list-group-item ">Assigned Trainees</a>
     <a href="{% url 'trainerpayment' %}" class="list-group-item {% if request.path == '/trainerpayment' %} active {% endif %}">Payments</a>
     <a href="#" class="list-group-item">Notifications <span class="badge bg-danger rounded-pill">2</span> </a>
     <a href="#" class="list-group-item">Account settings</a>

@@ -16,6 +16,7 @@ urlpatterns =[
     path('trainer/logout/', views.trainer_logout, name='trainer_logout'),
     path('trainerdash',views.trainerdash,name='trainerdash'),
     path('trainerpayment',views.trainerpayment,name='trainerpayment'),
+    path('trainprof',views.trainprof,name='trainprof')
     
     #requires subs model to be built, will circle back to it when subs model is built
     #path('trainersubs',views.trainersubs,name='trainersubs'),
