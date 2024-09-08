@@ -67,3 +67,13 @@ class trainer(models.Model):
     
     def image_tag(self):
         return mark_safe('<img src="%s" width="80"/>' % (self.img.url))
+    
+class mealplan(models.Model):
+    #CURRENTLY JUST A NAME BUT WILL ADD SUBSCRIBER ADD ONCE SUBSCRIBER MODEL IS MADE
+    subscriber = models.CharField(max_length=100)
+    mealchoice = [('B','breakfast'),('L','lunch'),('D','dinner')]
+    mealtime = models.CharField(max_length=1,choices=mealchoice,default='B')
+    meal = models.CharField(max_length=100)
+    trainer = models.ForeignKey(trainer,on_delete=models.CASCADE,related_name='mealplans')
+
+

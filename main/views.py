@@ -92,3 +92,12 @@ def trainprof(request):
     
     form = forms.trainerpform(instance=traineri)
     return render(request,'trainprof.html',{'form':form,'msg':msg})
+
+def mealplan(request):
+
+    trainid =  request.session['trainerid']
+    trainer = models.trainer.objects.get(id=trainid)
+    mealplan = trainer.mealplans.all()
+
+
+    return render(request,'mealplan.html',{'mealplan':mealplan})
