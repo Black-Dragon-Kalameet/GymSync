@@ -30,3 +30,7 @@ class traineradmin(admin.ModelAdmin):
     list_editable = ('is_active',)
     list_display=('full_name','mobile','is_active','image_tag')
 admin.site.register(models.trainer,traineradmin)
+
+class mealadmin(admin.ModelAdmin):
+    list_display=('subscriber','mealtime','meal')
+admin.site.register(models.mealplan,mealadmin)
