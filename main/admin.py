@@ -34,3 +34,38 @@ admin.site.register(models.trainer,traineradmin)
 class mealadmin(admin.ModelAdmin):
     list_display=('subscriber','mealtime','meal')
 admin.site.register(models.mealplan,mealadmin)
+
+
+# Assign subscriber to a trainer
+class AssignSubscriberAdmin(admin.ModelAdmin):
+    list_display = ("user", "trainer")
+
+admin.site.register(models.AssignSubscriber, AssignSubscriberAdmin)
+
+
+# Trainer's Acheivments
+class TrainerAcheivementAdmin(admin.ModelAdmin):
+    list_display = ("trainer", "title", "date", "image_tag", "details")
+
+admin.site.register(models.TrainerAcheivement, TrainerAcheivementAdmin)
+
+
+# Trainer's Salary
+class TrainerSalaryAdmin(admin.ModelAdmin):
+    list_display = ("trainer", "amount", "amount_date", "remarks")
+
+admin.site.register(models.TrainerSalary, TrainerSalaryAdmin)
+
+
+# Trainer Notifications
+class TrainerNotificationAdmin(admin.ModelAdmin):
+    list_display = ('notif_msg',)
+
+admin.site.register(models.TrainerNotification, TrainerNotificationAdmin)
+
+
+# Subscribers and Admin Messages to Trainer
+class TrainerMessageAdmin(admin.ModelAdmin):
+    list_display = ("user", "trainer", "message")
+
+admin.site.register(models.TrainerMessage, TrainerMessageAdmin)

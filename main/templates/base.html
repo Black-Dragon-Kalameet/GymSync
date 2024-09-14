@@ -76,20 +76,21 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarScrollingDropdown">
 
-                {% if not request.user.is_authenticated %}
-                <li><a class="dropdown-item" href="#">Dashboard</a></li>
-	              <li><a class="dropdown-item" href="#">Profile</a></li>
-	              <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Login</a></li>
-                <li><a class="dropdown-item" href="#">Register</a></li>
-		            {% if request.session.trainerlogin %}
-                <li class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="{% url 'trainerdash' %}">Trainer Dash</a></li>
-		            <li><a class="dropdown-item" href="{% url 'trainer_logout' %}">Logout</a></li>
-		            {% else %}          
-	              <li><a class="dropdown-item" href="{% url 'trainerlogin' %}">Trainer Login</a></li>
-	              {% endif %}
+              {% if not request.user.is.authenticated %}
+                {% if request.session.trainerlogin %}
+                <li><a class="dropdown-item" href="{% url 'trainer_dashboard' %}">Dashboard</a></li>
+                <li><a class="dropdown-item" href="{% url 'trainerlogout' %}">Logout</a></li>
+                {% else %}
+                <li><a class="dropdown-item" href="{% url 'trainerlogin' %}">Trainer Login</a></li>
+                <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
                 {% endif %}
+              {% else %}
+                <li><a class="dropdown-item" href="{% url 'user_dashboard' %}">Dashboard</a></li>
+                <li><a class="dropdown-item" href="{% url 'update_profile' %}">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
+              {% endif %}
               </ul>
             </li>
           </ul>

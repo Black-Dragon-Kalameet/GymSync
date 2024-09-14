@@ -12,16 +12,23 @@ urlpatterns =[
 
 
     #trainerstuff
-    path('trainer/login',views.trainerlogin,name='trainerlogin'),
-    path('trainer/logout/', views.trainer_logout, name='trainer_logout'),
-    path('trainerdash',views.trainerdash,name='trainerdash'),
-    path('trainerpayment',views.trainerpayment,name='trainerpayment'),
-    path('trainprof',views.trainprof,name='trainprof'),
-    path('mealplan',views.mealplan,name='mealplan')
-    
+    path('trainerlogin', views.trainerlogin, name='trainerlogin'),
+    path('trainerlogout', views.trainerlogout, name='trainerlogout'),
+    path('trainer_dashboard', views.trainer_dashboard, name='trainer_dashboard'),
+    path('trainer_profile', views.trainer_profile, name='trainer_profile'),
+    path('trainer_payments', views.trainer_payments, name='trainer_payments'),
+    path('mealplan',views.mealplan,name='mealplan'),
+    path('trainer_change_password', views.trainer_change_password, name='trainer_change_password'),
+    path('trainer_notifs', views.trainer_notifs, name='trainer_notifs'),
+    path('trainer_subscribers', views.trainer_subscribers, name='trainer_subscribers'),
 
-    #requires subs model to be built, will circle back to it when subs model is built
-    #path('trainersubs',views.trainersubs,name='trainersubs'),
+    # Notifications
+    path('notifs', views.notifs, name='notifs'),
+    path('get_notifs', views.get_notifs, name='get_notifs'),
+    path('mark_read_notif', views.mark_read_notif, name='mark_read_notif'),
+
+    # Messages
+    path('messages', views.trainer_msgs, name='messages'),
 
 ]
 #If DEBUG is True, serve media files (like images) during development

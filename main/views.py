@@ -54,7 +54,7 @@ def trainerlogin(request):
   
             
     form = forms.trainerloginform
-    return render(request,'trainerlogin.html',{'form':form, 'message': message})
+    return render(request,'trainer/trainerlogin.html',{'form':form, 'message': message})
 
 
 
@@ -67,7 +67,7 @@ def trainer_logout(request):
     return redirect('/')
 
 def trainerdash(request):
-    return render(request,'trainerdash.html')
+    return render(request,'trainer/dashboard.html')
 
 def trainerpayment(request):
     #trainer = models.trainer.objects.get(pk=request.session['trainerid'])
@@ -91,7 +91,7 @@ def trainprof(request):
            msg ='profile updated'
     
     form = forms.trainerpform(instance=traineri)
-    return render(request,'trainprof.html',{'form':form,'msg':msg})
+    return render(request,'trainer/profile.html',{'form':form,'msg':msg})
 
 def mealplan(request):
 
@@ -101,3 +101,45 @@ def mealplan(request):
 
 
     return render(request,'mealplan.html',{'mealplan':mealplan})
+
+
+# Assigned subscribers to the trainer
+def trainer_subscribers(request):
+    trainer = models.Trainer.objects.get(pk=request.session['trainerid'])
+    trainer_subs = models.AssignSubscriber.objects.filter(trainer=trainer).order_by('-id')
+
+    return render(request, 'trainer/trainer_subscribers.html', {'trainer_subs' : trainer_subs})
+
+
+# Trainer - Change Password
+def trainer_change_password(request):
+    msg = None
+
+    if request.method =='POST':
+        new_password = request.POST['new_password']
+        update_response = models.Trainer.objects.filter(pk=request.session['trainerid']).update(password=new_password)
+
+        if update_response:
+            msg = "Password Changed Successfully"
+            del request.session['trainerid']
+            return redirect('/trainerlogin')
+        else:
+            msg = "Password Change Failed"
+
+    form = forms.TrainerChangePasswordForm
+
+    return render(request, 'trainer/trainer_change_password.html', {'form' : form, 'msg': msg})
+
+
+# Trainer Notifications
+def trainer_notifs(request):
+    data = models.TrainerNotification.objects.all().order_by('-id')
+
+    return render(request, 'trainer/notifs.html', {'notifs' : data})
+
+
+# Trainer Messages
+def trainer_msgs(request):
+    data = models.TrainerMessage.objects.all().order_by('-id')
+
+    return render(request, 'trainer/messages.html', {'msgs' : data})

@@ -67,6 +67,89 @@ class trainer(models.Model):
     
     def image_tag(self):
         return mark_safe('<img src="%s" width="80"/>' % (self.img.url))
+
+
+# Assign subscriber to a trainer
+class AssignSubscriber(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.user)
+
+
+# Trainer's Achievements
+class TrainerAcheivement(models.Model):
+    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150)
+    date = models.DateField(null=True)
+    img = models.ImageField(upload_to="trainers_achievments/")
+    details = models.TextField()
+
+    def __str__(self):
+        return str(self.title)
+    
+    def image_tag(self):
+        if self.img:
+            return mark_safe("<img src='%s' width='80'/>" %(self.img.url))
+        else:
+            return 'no-image'
+        
+
+# Trainer's Salary
+class TrainerSalary(models.Model):
+    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
+    amount = models.IntegerField()
+    amount_date = models.DateField()
+    remarks = models.TextField(blank=True)
+
+    class Meta:
+        verbose_name_plural = "Trainers' Salaries"
+
+    def __str__(self):
+        return str(self.trainer.full_name)
+
+
+# Training Notifications
+class TrainerNotification(models.Model):
+    notif_msg = models.TextField()
+
+    def __str__(self):
+        return str(self.notif_msg)
+
+
+    def save(self,  *args, **kwargs):
+        super(TrainerNotification, self).save(*args, **kwargs)
+        channel_layer = get_channel_layer()
+        notif = self.notif_msg
+        total = TrainerNotification.objects.all().count()
+        async_to_sync(channel_layer.group_send) (
+            'noti_group_name', {
+                'type' : 'send_notificatio',
+                'value' : json.dumps({'notif':notif, 'total': total})}
+            )
+
+
+
+# Notifications - Mark as read by trainer
+class NotifTrainerStatus(models.Model):
+    notif = models.ForeignKey(TrainerNotification, on_delete=models.CASCADE, related_name='trainernotification')
+    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE, related_name='trainer')
+    status = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = "Trainer Notification Status"
+
+
+# Subscribers and Admin Messages to Trainer
+class TrainerMessage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE, null=True)
+    message = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "Messages for Trainers"
+        
     
 class mealplan(models.Model):
     #CURRENTLY JUST A NAME BUT WILL ADD SUBSCRIBER ADD ONCE SUBSCRIBER MODEL IS MADE
