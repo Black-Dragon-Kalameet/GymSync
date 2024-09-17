@@ -79,9 +79,9 @@ class mealplan(models.Model):
 
 #Gallery Model
 class Gallery (models.Model):
-    alt_text = models.CharField(max_length=150)
+    title = models.CharField(max_length=150)
     detail = models.TextField()
-    img=models.ImageField(upload_to="gallery_imgs/",null=True)
+    img=models.ImageField(upload_to="gallery/",null=True)
 
     def __str__(self):
         return self.title
@@ -89,4 +89,13 @@ class Gallery (models.Model):
     def image_tag(self):
         return mark_safe('<img src="%s" width="80"/>' % (self.img.url))
     
+# Gallery Images
+class GalleryImage (models.Model):
+    alt_text = models.CharField(max_length=150)
+    img=models.ImageField(upload_to="gallery_imgs/",null=True)
+
+    def __str__(self):
+        return self.title
     
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="80"/>' % (self.img.url))
