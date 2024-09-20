@@ -101,3 +101,19 @@ def mealplan(request):
 
 
     return render(request,'mealplan.html',{'mealplan':mealplan})
+
+def mealadd(request):
+    msg = None
+    trainid = request.session.get('trainerid')
+
+    if request.method == 'POST':
+        form = forms.mealaddform(request.POST, request.FILES)
+        if form.is_valid():
+            mealplan = form.save(commit=False)
+            mealplan.trainer_id =trainid
+            mealplan.save()
+            msg = 'Meal added successfully'
+            return redirect('mealplan') 
+    
+    form = forms.mealaddform()  
+    return render(request, 'mealadd.html', {'form': form, 'msg': msg})
