@@ -17,3 +17,9 @@ class trainerpform(forms.ModelForm):
      class Meta:
           model= models.trainer
           fields = ('full_name','mobile','address','is_active','detail','img')
+
+
+class mealaddform(forms.ModelForm):
+     class Meta:
+          model = models.mealplan
+          fields = ('subscriber','mealtime','meal')

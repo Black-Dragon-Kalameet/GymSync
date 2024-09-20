@@ -10,17 +10,21 @@
 				</div>
 				<div class="col-9">
 					<h3 class="mb-4 border-bottom pb-1">Meals</h3>
+					<!-- Add new meal button -->
+					<a href="{% url 'mealadd' %}" class="btn btn-primary mb-3">Add New Meal</a>
+
+					<!-- Meals Table -->
 					<table class="table table-bordered">
 						<tr>
-							<th>subscriber</th>
+							<th>Subscriber</th>
 							<th>Meal Period</th>
                             <th>Meal</th>
 						</tr>
 						{% for meal in mealplan %}
 						<tr>
-							<td>{{meal.subscriber}}</td>
-							<td>{{meal.get_mealtime_display}}</td>
-                            <td>{{meal.meal}}</td>
+							<td>{{ meal.subscriber }}</td>
+							<td>{{ meal.get_mealtime_display }}</td>
+                            <td>{{ meal.meal }}</td>
 						</tr>
 						{% endfor %}
 					</table>
