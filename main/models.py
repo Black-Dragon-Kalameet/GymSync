@@ -91,6 +91,9 @@ class Gallery (models.Model):
     
 # Gallery Images
 class GalleryImage (models.Model):
+# Many-to-one relationship: Multiple instances of this model can be associated with a single Gallery.
+# If the Gallery is deleted, all related instances here will also be deleted (CASCADE).
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE)
     alt_text = models.CharField(max_length=150)
     img=models.ImageField(upload_to="gallery_imgs/",null=True)
 
