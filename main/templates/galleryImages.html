@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'base.html' %} {% block content %}
+<!-- Main Start -->
+<main>
+  <!-- Services -->
+  <section class="container my-4">
+    <h1 class="text-center mb-4 section-heading border-bottom pb-2">
+      {{gallery.title}}
+    </h1>
+    <div class="row">
+      {% for galleryImg in galleryImages %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img
+            src="{{galleryImg.img.url}}"
+            class="card-img-top"
+            alt="{{galleryImg.alt_text}}"
+          />
+        </div>
+      </div>
+      {% endfor%}
+    </div>
+  </section>
+  <!-- End -->
+</main>
+<!-- End -->
+{% endblock %}

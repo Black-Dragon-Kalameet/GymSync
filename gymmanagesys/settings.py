@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -134,3 +135,8 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL ='login'
+
+JAZZMIN_SETTINGS = {
+    "site_title": "GymSync",
+    "site_header": "GymSync",
+}

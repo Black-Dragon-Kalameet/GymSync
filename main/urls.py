@@ -19,7 +19,7 @@ urlpatterns =[
     path('trainprof',views.trainprof,name='trainprof'),
     path('mealplan',views.mealplan,name='mealplan'),
     path('gallery',views.gallery,name='gallery'),
-    path('galleryimages/<int:id>',views.galleryImages,name='galleryImages')
+    path('galleryImages/<int:id>',views.galleryImages,name='galleryImages')
 
     
 

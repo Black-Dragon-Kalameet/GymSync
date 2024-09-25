@@ -109,6 +109,6 @@ def gallery(request):
 
 # Gallery Images View
 def galleryImages(request, id):
-    gallery =  models.GalleryImage.objects.get(id = id)
+    gallery =  models.Gallery.objects.get(id = id)
     galleryImages = models.GalleryImage.objects.filter(gallery = gallery).order_by('-id')
     return render(request,'galleryImages.html',{'galleryImages':galleryImages, 'gallery': gallery})
