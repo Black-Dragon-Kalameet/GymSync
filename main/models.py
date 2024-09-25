@@ -90,15 +90,25 @@ class Gallery (models.Model):
         return mark_safe('<img src="%s" width="80"/>' % (self.img.url))
     
 # Gallery Images
-class GalleryImage (models.Model):
-# Many-to-one relationship: Multiple instances of this model can be associated with a single Gallery.
-# If the Gallery is deleted, all related instances here will also be deleted (CASCADE).
-    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE)
-    alt_text = models.CharField(max_length=150)
-    img=models.ImageField(upload_to="gallery_imgs/",null=True)
+class GalleryImage(models.Model):
+    # ForeignKey creates a many-to-one relationship with Gallery
+    # CASCADE ensures that when a Gallery is deleted, its associated GalleryImages are also deleted
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, null=True)
 
+    # Stores a short description or alternative text for the image
+    # null= true means GalleryImage can exist without being associated with a Gallery
+
+    alt_text = models.CharField(max_length=150)
+
+    # Stores the image file, uploaded to the 'gallery_imgs/' directory
+    # null=True allows the field to be optional in the database
+    img = models.ImageField(upload_to="gallery_imgs/", null=True)
+
+    # Returns a string representation of the model instance
     def __str__(self):
-        return self.title
-    
+        return self.alt_text
+
+    # Generates an HTML img tag for admin interface display
+    # mark_safe is used to prevent escaping of HTML characters
     def image_tag(self):
         return mark_safe('<img src="%s" width="80"/>' % (self.img.url))

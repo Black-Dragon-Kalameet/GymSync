@@ -17,7 +17,9 @@ urlpatterns =[
     path('trainerdash',views.trainerdash,name='trainerdash'),
     path('trainerpayment',views.trainerpayment,name='trainerpayment'),
     path('trainprof',views.trainprof,name='trainprof'),
-    path('mealplan',views.mealplan,name='mealplan')
+    path('mealplan',views.mealplan,name='mealplan'),
+    path('gallery',views.gallery,name='gallery')
+
     
 
     #requires subs model to be built, will circle back to it when subs model is built

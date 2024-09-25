@@ -101,3 +101,9 @@ def mealplan(request):
 
 
     return render(request,'mealplan.html',{'mealplan':mealplan})
+
+# Galleries View
+def gallery(request):
+    gallery = models.Gallery.objects.all().order_by('-id')
+    return render(request,'gallery.html',{'gallerys':gallery})
+
