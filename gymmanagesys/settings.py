@@ -139,4 +139,6 @@ LOGOUT_REDIRECT_URL ='login'
 JAZZMIN_SETTINGS = {
     "site_title": "GymSync",
     "site_header": "GymSync",
+    "site_brand": "GymSync",
+    "order_with_respect_to": ["auth", "main.banners", "main.enquiry", "main.gallery", "main.GalleryImage", "main.pages"],
 }
