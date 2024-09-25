@@ -13,7 +13,11 @@
           <div class="card-body">
             <h5 class="card-title">{{gallery.title}}</h5>
             <p class="card-text">{{gallery.detail}}</p>
-            <a href="#" class="btn btn-primary">View All</a>
+            <a
+              href="{% url 'galleryImages' gallery.id %}"
+              class="btn btn-primary"
+              >View All</a
+            >
           </div>
         </div>
       </div>
