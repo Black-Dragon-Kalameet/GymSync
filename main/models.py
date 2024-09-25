@@ -77,3 +77,7 @@ class mealplan(models.Model):
     trainer = models.ForeignKey(trainer,on_delete=models.CASCADE,related_name='mealplans')
 
 
+class messages(models.Model):
+    #user model will go here and foriegn key to user
+    trainer = models.ForeignKey(trainer,on_delete=models.CASCADE,null=True)
+    messages = models.TextField()
