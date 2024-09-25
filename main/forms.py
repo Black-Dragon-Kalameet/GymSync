@@ -23,3 +23,9 @@ class mealaddform(forms.ModelForm):
      class Meta:
           model = models.mealplan
           fields = ('subscriber','mealtime','meal')
+
+
+class messageForm(forms.ModelForm):
+    class Meta:
+        model = models.messages
+        fields = ['messages']

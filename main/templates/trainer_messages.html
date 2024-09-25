@@ -1,0 +1,23 @@
+<h1>Messages</h1>
+
+<!-- Display messages -->
+<div>
+    <h2>Message History</h2>
+    <ul>
+        {% for msg in messages %}
+            <li><strong>{{ msg.trainer_id }}:</strong> {{ msg.messages }} <em>({{ msg.timestamp }})</em></li>
+        {% empty %}
+            <li>No messages yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- Send a new message -->
+<div>
+    <h2>Send a Message</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+</div>

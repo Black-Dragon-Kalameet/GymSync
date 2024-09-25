@@ -19,6 +19,7 @@ urlpatterns =[
     path('trainprof',views.trainprof,name='trainprof'),
     path('mealplan',views.mealplan,name='mealplan'),
     path('mealadd',views.mealadd,name='mealadd'),
+    path('trainer_messages',views.trainer_messages,name='trainer_messages'),
 
     
 

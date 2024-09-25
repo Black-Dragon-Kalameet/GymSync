@@ -34,3 +34,8 @@ admin.site.register(models.trainer,traineradmin)
 class mealadmin(admin.ModelAdmin):
     list_display=('subscriber','mealtime','meal')
 admin.site.register(models.mealplan,mealadmin)
+
+class messagesadmin(admin.ModelAdmin):
+    list_display=('trainer','messages')
+    
+admin.site.register(models.messages,messagesadmin)

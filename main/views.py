@@ -117,3 +117,30 @@ def mealadd(request):
     
     form = forms.mealaddform()  
     return render(request, 'mealadd.html', {'form': form, 'msg': msg})
+
+
+def trainer_messages(request):
+    if not request.session.get('trainerlogin'):
+        return redirect('trainerlogin')
+
+    trainer_id = request.session.get('trainerid')
+    
+    # Ensure 'messages' is used correctly here
+    trainer_messages = models.messages.objects.filter(trainer_id=trainer_id).order_by('-id') if trainer_id else []
+
+    if request.method == 'POST':
+        form = forms.messageForm(request.POST)
+        if form.is_valid():
+            new_message = form.save(commit=False)
+            new_message.trainer_id = trainer_id
+            new_message.save()
+            return redirect('trainer_messages')
+    else:
+        form = forms.messageForm()
+
+    context = {
+        'messages': trainer_messages,  # Pass the messages for the template
+        'form': form
+    }
+
+    return render(request, 'trainer_messages.html', context)
