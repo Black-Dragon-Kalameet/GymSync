@@ -112,3 +112,19 @@ class GalleryImage(models.Model):
     # mark_safe is used to prevent escaping of HTML characters
     def image_tag(self):
         return mark_safe('<img src="%s" width="80"/>' % (self.img.url))
+
+#Subscriptions
+class SubPlan(models.Model):
+    title = models.CharField(max_length=150)
+    price = models.IntegerField()
+    
+    def __str__(self):
+            return self.title
+        
+# Subscription plans features
+class SubPlanFeatures(models.Model):
+    # Foreign key relationship to SubPlan model
+    sublan = models.ForeignKey(SubPlan, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150)
+    def __str__(self):
+            return self.title
